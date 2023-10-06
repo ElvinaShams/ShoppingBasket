@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "SegoeUI-Light";
+  font-family: "SegoeUI";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("../fonts/SegoeUI-Light.woff2") format("woff2"),
-    url("../fonts/SegoeUI-Light.woff") format("woff");
+  src: url("./fonts/SegoeUI.woff2") format("woff2"),
+    url("./fonts/SegoeUI.woff") format("woff");
 }
 
 @font-face {
@@ -12,8 +12,8 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src: url("../fonts/SegoeUI-SemiBold.woff2") format("woff2"),
-    url("../fonts/SegoeUI-SemiBold.woff") format("woff");
+  src: url("./fonts/SegoeUI-SemiBold.woff2") format("woff2"),
+    url("./fonts/SegoeUI-SemiBold.woff") format("woff");
 }
 
 @font-face {
@@ -21,14 +21,14 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("../fonts/SegoeUI-Bold.woff2") format("woff2"),
-    url("../fonts/SegoeUI-Bold.woff") format("woff");
+  src: url("./fonts/SegoeUI-Bold.woff2") format("woff2"),
+    url("./fonts/SegoeUI-Bold.woff") format("woff");
 }
 
-html {
+.page {
   height: 100%;
   font-size: 14px;
-  font-family: "SegoeUI-Light", "Arial", sans-serif;
+  font-family: "SegoeUI", "Arial", sans-serif;
   line-height: 20px;
 }
 
@@ -48,7 +48,6 @@ html {
 .body {
   margin: 0;
   background-color: #6725a8;
-  color: #ffffff;
   overflow-x: hidden;
   width: auto;
   height: 100vh;
@@ -90,6 +89,825 @@ html {
   background-color: #6725a8;
 }
 
+.main {
+  border-radius: 24px 24px;
+  background-color: rgba(246, 246, 250, 1);
+  padding: 15px 0;
+  padding-bottom: 24px;
+}
+
+.basket__header {
+  font-family: "SegoeUI-Bold", "Arial", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  color: #000000;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.basket__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.basket__total-quantity {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 16px;
+}
+
+.basket__label {
+  position: relative;
+  padding-left: 33px;
+  color: #000000;
+}
+
+.basket__label:disabled {
+  opacity: 0.3;
+}
+
+.basket__label::before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+
+.basket__label::after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-image: url("../image/icon/checkbox.svg");
+  left: 0px;
+  top: 0px;
+  display: none;
+}
+
+.basket__input:checked + .basket__label::after {
+  display: block;
+}
+
+.basket__input:checked + .basket__label::before {
+  border: none;
+}
+
+.icon {
+  width: 20px;
+  margin-left: auto;
+}
+
+.icon::before {
+  content: "−";
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+  border-color: #9797af;
+  width: 12px;
+  height: 12px;
+  transform: rotate(135deg);
+  margin-top: 6px;
+  transition: margin 0.3s ease, transform 0.3s ease;
+}
+
+.basket-form__content {
+  padding: 0 16px;
+}
+
+.basket-form__content.closed .icon::before {
+  content: "+";
+  transform: rotate(-45deg);
+  margin-top: -6px;
+}
+
+.count-button__numeric {
+  color: #000;
+}
+
+.accordion__list {
+  margin: 0;
+  margin-bottom: 46px;
+  padding: 0;
+}
+
+.accordion__item {
+  box-sizing: border-box;
+  outline: 0;
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.card__content {
+  display: flex;
+  padding: 12px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card__price {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.card__price--actuality {
+  font-family: "SegoeUI-Bold", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.card__price--not-current {
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  color: #9797af;
+  margin: 0;
+  margin-left: 5px;
+  text-decoration-style: dashed;
+  border-bottom: 1px dashed #9797af;
+}
+
+.card__title {
+  text-decoration: none;
+  -webkit-line-clamp: 3;
+}
+
+.title {
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 40px;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__color {
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+  color: rgba(0, 0, 0, 1);
+}
+
+.card__size {
+  display: none;
+}
+
+.card__info__store {
+  color: #9797af;
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 8px;
+}
+
+.card__info__company {
+  display: none;
+}
+
+.card__description {
+  width: 192px;
+  margin-left: 16px;
+}
+
+.card__image {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.card__wrapper-image {
+  position: relative;
+  border-radius: 8px;
+}
+
+.image__plug {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card__label:disabled {
+  opacity: 0.3;
+}
+
+.card__label::before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  left: 4px;
+  top: 4px;
+}
+
+.card__label::after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-image: url("../image/icon/checkbox.svg");
+  left: 4px;
+  top: 4px;
+  display: none;
+}
+
+.card__input:checked + .card__label::after {
+  display: block;
+}
+
+.card__input:checked + .card__label::before {
+  border: none;
+  background-color: transparent;
+}
+
+.card__count {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__count-button {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.button__favorites {
+  width: 20px;
+  height: 20px;
+  background-image: url("../image/icon/like.svg");
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin: 0 12px;
+}
+
+.button__delete {
+  width: 20px;
+  height: 20px;
+  background-image: url("../image/icon/basket.svg");
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin: 0 12px;
+}
+
+.count__limited {
+  color: #ff3b30;
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.card__count-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0 5px 0 4px;
+}
+
+.count-button {
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  padding: 2px 5px 8px 5px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+.count-button__numeric {
+  width: 32px;
+  text-align: center;
+  padding: 4.333px 0px 7.667px 0px;
+}
+
+.disabled {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.image {
+  position: relative;
+  width: 80px;
+}
+
+.sold-out .title {
+  color: rgb(151, 151, 175);
+}
+
+.sold-out p {
+  color: rgb(151, 151, 175);
+}
+
+.sold-out .card__wrapper-image {
+  filter: grayscale(80%);
+}
+
+.unavailable {
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.unavailable__title {
+  font-family: "SegoeUI-SemiBold", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.unavailable__title p {
+  margin: 0;
+}
+
+.unavailable__hiding {
+  display: flex;
+  margin: 16px 0;
+}
+
+.sold-out .icon--size {
+  position: absolute;
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #fff;
+  color: #000;
+  bottom: 4px;
+  left: 4px;
+  padding: 0px 4px 3px 4px;
+  border-radius: 6px;
+}
+
+.card__control {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.delivery {
+  background-color: #fff;
+  padding: 16px 16px 24px 16px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.delivery__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title-form {
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+.delivery__place {
+  margin: 0;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.change-button {
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #cb11ab;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.point-form {
+  font-family: "SegoeUI-SemiBold", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  color: #000;
+}
+
+.delivery__rating-stars {
+  display: flex;
+  align-items: center;
+}
+
+.delivery__adress {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.raiting-value {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+
+  margin-left: 4px;
+}
+
+.delivery__mode {
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+  margin-left: 8px;
+}
+
+.stars {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  display: block;
+  font-size: 0;
+}
+
+.stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../image/icon/star_fill.svg");
+}
+
+.delivery__price-value {
+  font-family: "SegoeUI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  color: #000;
+  margin: 0;
+}
+
+.delivery__price {
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.delivery__list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.delivery__item {
+  list-style-type: none;
+}
+
+.delivery__item img {
+  height: 56px;
+  width: 40.925px;
+  margin-right: 8px;
+}
+
+.point-date {
+  font-family: "SegoeUI-SemiBold", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.delivery__date {
+  margin-bottom: 24px;
+}
+
+.delivery__purchase-returns {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.delivery__info-shipping {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+}
+
+.shipping__info {
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.shipping__free {
+  color: #0cb477;
+  text-decoration-style: dashed;
+  border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
+}
+
+.popup {
+  display: none;
+  font-size: 13px;
+  line-height: 16px;
+  position: absolute;
+  top: 34px;
+  left: 10px;
+  color: #000;
+  padding: 10px 16px 14px 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 200px;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.delivery__purchase-returns:hover .popup,
+.delivery__purchase-returns:focus .popup {
+  display: block;
+}
+
+.payment {
+  padding: 16px 16px 24px 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.payment__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.payment__info-card {
+  display: flex;
+  align-items: center;
+}
+
+.payment__number-card {
+  margin: 0;
+  margin-left: 9px;
+  color: #000;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.payment__date {
+  margin-left: 12px;
+}
+
+.payment__information {
+  color: #9797af;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.user-data {
+  padding: 16px 16px 24px 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  margin-bottom: 16px;
+}
+
+.user-data__header {
+  margin-bottom: 8px;
+}
+
+.user-data__input {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  color: #a0a0a4;
+  border: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin: 13px 0 16px 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.input__itn {
+  margin-bottom: 0;
+}
+
+.user-data__itn-info {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+}
+
+.sidebar {
+  padding: 8px 16px 0 16px;
+  margin-bottom: 16px;
+}
+
+.sidebar__total-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+font-size: 20px;
+line-height: 28px;
+letter-spacing: -0.2px;
+color: #000;
+  margin-bottom: 8px;
+}
+
+.sidebar__total-header p {
+  margin: 0;
+}
+
+.sidebar__description-wrapper {
+  margin-bottom: 16px;
+}
+
+.sidebar__description {
+  display: flex;
+  justify-content: space-between;
+  color:#000;
+  font-family: "SegoeUI", Arial, sans-serif;
+font-size: 16px;
+line-height: 24px;
+margin: 0;
+}
+
+.sidebar__delivery {
+  display: none;
+}
+
+.sidebar__section {
+  background-color:  #F0ECF4;
+  padding: 8px 8px 12px 8px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.sidebar__info-card {
+  display: none;
+}
+
+.sidebar__payment {
+  display: none;
+}
+
+
+.label {
+  position: relative;
+    padding-left: 33px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.label::before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+
+.label::after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-image: url("../image/icon/checkbox.svg");
+  left: 0px;
+  top: 0px;
+  display: none;
+}
+
+.sidebar__input-agreement:checked + .label::after {
+  display: block;
+}
+
+.sidebar__input-agreement:checked + .label::before {
+  border: none;
+}
+
+
+
+
+.sidebar__payment-check {
+  color: #000;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 24px;
+}
+
+.sidebar__information {
+  color: #000;
+}
+
+.sidebar__agreement {
+  margin-bottom: 8px;
+}
+
+.paybutton {
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+font-size: 16px;
+line-height: 24px;
+  width: 100%;
+  color: #fff;
+  height: 44px;
+  padding: 0px 32px 5px 32px;
+  border: none;
+  border-radius: 8px;
+  background-color: #CB11AB;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.label__payment {
+  position: relative;
+    padding-left: 23px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.label__payment::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+
+.label__payment::after {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../image/icon/checked-icon.svg");
+  background-repeat: no-repeat;
+  left: 1px;
+  top: -2px;
+  display: none;
+}
+
+.check__input-payment:checked + .label__payment::after {
+  display: block;
+}
+
+.check__input-payment:checked + .label__payment::before {
+  border: none;
+}
+
+.sidebar__agree {
+  margin-bottom: 16px;
+}
+
+.footer {
+  padding: 24px;
+  text-align: center;
+}
+
+.footer__text {
+  color: rgba(255, 255, 255, 0.70);
+font-size: 13px;
+line-height: 16px;
+margin: 0;
+}
+
 @media (min-width: 1024px) {
   .header-wrapper {
     padding: 16px 24px;
@@ -115,7 +933,7 @@ html {
     display: block;
     width: 100%;
     font-size: 18px;
-    font-family: "SegoeUI-Light", "Arial", sans-serif;
+    font-family: "SegoeUI", "Arial", sans-serif;
     line-height: 24px;
     padding: 10px 20px;
     padding-right: 52px;
@@ -133,7 +951,6 @@ html {
   .header__field:focus-visible {
     outline: none;
     background: rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 0.5);
   }
 
   .header__field::placeholder {
