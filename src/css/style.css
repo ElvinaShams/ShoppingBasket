@@ -25,6 +25,12 @@
     url("./fonts/SegoeUI-Bold.woff") format("woff");
 }
 
+button,
+input {
+  box-shadow: none;
+  cursor: pointer;
+}
+
 .page {
   height: 100%;
   font-size: 14px;
@@ -57,13 +63,37 @@
   min-height: 56px;
 }
 
+.header__nav-item {
+  cursor: pointer;
+}
+
+.header__nav-item:hover {
+  opacity: 0.8;
+}
+
+.hidden__list {
+  display: none;
+}
+
+.header__logo-image:hover {
+  background-color: rgb(138, 43, 226, 0.3);
+}
+
+.hidden {
+  display: none;
+}
+
+.header__logo {
+  max-height: 56px;
+}
+
 .header-wrapper {
   display: flex;
   min-width: 320px;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 13px;
   box-sizing: border-box;
 }
 
@@ -80,6 +110,10 @@
   padding: 0;
   margin: 0;
   border: none;
+}
+
+.header__toggle:hover:focus {
+  opacity: 0.8;
 }
 
 .header__field-button {
@@ -106,12 +140,6 @@
   margin-bottom: 16px;
 }
 
-.basket__button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .basket__total-quantity {
   display: flex;
   flex-wrap: nowrap;
@@ -119,9 +147,22 @@
 }
 
 .basket__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   padding-left: 33px;
   color: #000000;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.basket__label::before:hover {
+  background-color: rgb(103, 37, 168, 0.3);
+}
+
+.basket__label::before:focus {
+  background-color: rgb(103, 37, 168, 0.6);
 }
 
 .basket__label:disabled {
@@ -138,6 +179,7 @@
   box-sizing: border-box;
   left: 0;
   top: 0;
+  cursor: pointer;
 }
 
 .basket__label::after {
@@ -149,19 +191,28 @@
   left: 0px;
   top: 0px;
   display: none;
+  cursor: pointer;
 }
 
 .basket__input:checked + .basket__label::after {
   display: block;
+  cursor: pointer;
 }
 
 .basket__input:checked + .basket__label::before {
   border: none;
+  cursor: pointer;
 }
 
 .icon {
-  width: 20px;
+  border: none;
+  background-color: transparent;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.count-button:hover {
+  color: rgba(165, 102, 229, 0.79);
 }
 
 .icon::before {
@@ -169,13 +220,14 @@
   display: block;
   font-size: 0;
   line-height: 0;
-  border-left: 3px solid;
-  border-bottom: 3px solid;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
   border-color: #9797af;
-  width: 12px;
-  height: 12px;
+  width: 9.6px;
+  height: 9.6px;
   transform: rotate(135deg);
-  margin-top: 6px;
+  margin-top: 11px;
+  margin-right: 8px;
   transition: margin 0.3s ease, transform 0.3s ease;
 }
 
@@ -183,10 +235,23 @@
   padding: 0 16px;
 }
 
-.basket-form__content.closed .icon::before {
+.change-button:hover {
+  color: #6725a8;
+}
+
+.paybutton:hover {
+  opacity: 0.8;
+}
+
+.paybutton:active {
+  border: 2px solid #ffffff;
+}
+
+.closed {
   content: "+";
-  transform: rotate(-45deg);
+  transform: rotate(-180deg);
   margin-top: -6px;
+  margin-right: 8px;
 }
 
 .count-button__numeric {
@@ -195,7 +260,6 @@
 
 .accordion__list {
   margin: 0;
-  margin-bottom: 46px;
   padding: 0;
 }
 
@@ -212,12 +276,29 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.card__count__bookmarks {
+  opacity: 0;
+}
+
+.accordion__item:hover .card__count__bookmarks {
+  opacity: 1;
+}
+
+.button__favorites:hover path {
+  fill: rgba(203, 17, 171, 1);
+}
+
+.button__delete:hover path {
+  fill: rgba(245, 81, 35, 1);
+}
+
 .card__price {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
   white-space: nowrap;
+  position: relative;
 }
 
 .card__price--actuality {
@@ -237,11 +318,64 @@
   margin-left: 5px;
   text-decoration-style: dashed;
   border-bottom: 1px dashed #9797af;
+  cursor: pointer;
+  text-decoration: line-through;
+}
+
+.card__price--not-current p {
+  margin: 0;
+}
+
+.popup__info-sale {
+  display: none;
+  flex-direction: row;
+  gap: 8px;
+  padding: 12px 9px 13px 18px;
+  width: 239px;
+  top: 25px;
+  right: 0;
+  left: auto;
+  z-index: 100;
+  position: absolute;
+  font-size: 13px;
+  line-height: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  justify-content: space-between;
+  color: #000;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.sale__info {
+  color: #a0a0a4;
+}
+
+.card__price--not-current:hover .popup__info-sale,
+.card__price--not-current:focus .popup__info-sale {
+  display: flex;
+  white-space: nowrap;
 }
 
 .card__title {
   text-decoration: none;
   -webkit-line-clamp: 3;
+}
+
+.basket__menu-hidden {
+  display: flex;
+  font-size: 16px;
+  font-family: "SegoeUI-SemiBold", Arial, sans-serif;
+  line-height: 24px;
+  margin: 0;
+}
+
+.basket__menu-hidden p {
+  margin: 0;
+  margin-right: 6px;
 }
 
 .title {
@@ -277,7 +411,8 @@
   font-family: "SegoeUI", Arial, sans-serif;
   font-size: 13px;
   line-height: 16px;
-  margin-bottom: 8px;
+  margin: 0;
+  margin-top: 7px;
 }
 
 .card__info__company {
@@ -338,11 +473,13 @@
 
 .card__input:checked + .card__label::after {
   display: block;
+  cursor: pointer;
 }
 
 .card__input:checked + .card__label::before {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .card__count {
@@ -352,29 +489,23 @@
   align-items: center;
 }
 
-.card__count-button {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 .button__favorites {
   width: 20px;
   height: 20px;
-  background-image: url("../image/icon/like.svg");
   background-color: transparent;
   padding: 0;
   border: none;
-  margin: 0 12px;
+  margin: 0 16px;
+  margin-top: 1px;
 }
 
 .button__delete {
   width: 20px;
   height: 20px;
-  background-image: url("../image/icon/basket.svg");
   background-color: transparent;
   padding: 0;
   border: none;
-  margin: 0 12px;
+  margin: 0 4px;
 }
 
 .count__limited {
@@ -388,10 +519,11 @@
 .card__count-button {
   display: flex;
   justify-content: space-between;
+  flex-wrap: nowrap;
   align-items: center;
   background-color: #fff;
   border-radius: 8px;
-  padding: 0 5px 0 4px;
+  padding: 0 0 0 4px;
 }
 
 .count-button {
@@ -433,8 +565,9 @@
 }
 
 .unavailable {
-  padding: 0 16px;
+  padding: 12px 16px;
   margin: 0 auto;
+  margin-bottom: 0;
 }
 
 .unavailable__title {
@@ -472,11 +605,26 @@
   align-items: center;
 }
 
+.user-data__error {
+  color: #f55123;
+  border-bottom: 1px solid rgb(245, 81, 35);
+}
+
+.user-data__error-message {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  line-height: 14px;
+  color: #f55123;
+}
+
 .delivery {
   background-color: #fff;
   padding: 16px 16px 24px 16px;
   border-radius: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 11px;
 }
 
 .delivery__header {
@@ -526,6 +674,7 @@
 .delivery__adress {
   font-size: 16px;
   line-height: 24px;
+  color: #000;
   margin: 0;
   margin-bottom: 4px;
 }
@@ -604,7 +753,7 @@
 }
 
 .delivery__date {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .delivery__purchase-returns {
@@ -618,6 +767,7 @@
   width: 22px;
   height: 22px;
   margin-right: 8px;
+  margin-left: 8px;
 }
 
 .shipping__info {
@@ -631,6 +781,7 @@
   color: #0cb477;
   text-decoration-style: dashed;
   border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
+  cursor: pointer;
 }
 
 .popup {
@@ -647,11 +798,17 @@
   width: 200px;
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
     0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  z-index: 100;
 }
 
-.delivery__purchase-returns:hover .popup,
-.delivery__purchase-returns:focus .popup {
+.shipping__info:hover .popup,
+.shipping__info:focus .popup {
   display: block;
+}
+
+.popup--total {
+  top: 41px;
+  left: 44px;
 }
 
 .payment {
@@ -659,6 +816,10 @@
   border-radius: 16px;
   background-color: #fff;
   margin-bottom: 12px;
+}
+
+.payment__modal {
+  display: none;
 }
 
 .payment__header {
@@ -670,7 +831,6 @@
 
 .payment__info-card {
   display: flex;
-  align-items: center;
 }
 
 .payment__number-card {
@@ -683,6 +843,8 @@
 }
 
 .payment__date {
+  font-size: 16px;
+  line-height: 24px;
   margin-left: 12px;
 }
 
@@ -691,10 +853,11 @@
   font-size: 13px;
   line-height: 16px;
   margin: 0;
+  padding: 0 8px;
 }
 
 .user-data {
-  padding: 16px 16px 24px 16px;
+  padding: 16px 16px 2px 16px;
   border-radius: 16px;
   background-color: #fff;
   margin-bottom: 16px;
@@ -726,6 +889,7 @@
   font-size: 12px;
   line-height: 14px;
   margin: 0;
+  margin-top: 3px;
 }
 
 .sidebar {
@@ -737,11 +901,11 @@
   display: flex;
   justify-content: space-between;
   font-family: "SegoeUI-Bold", Arial, sans-serif;
-font-size: 20px;
-line-height: 28px;
-letter-spacing: -0.2px;
-color: #000;
-  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  color: #000;
+  margin-bottom: 7px;
 }
 
 .sidebar__total-header p {
@@ -749,17 +913,17 @@ color: #000;
 }
 
 .sidebar__description-wrapper {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .sidebar__description {
   display: flex;
   justify-content: space-between;
-  color:#000;
+  color: #000;
   font-family: "SegoeUI", Arial, sans-serif;
-font-size: 16px;
-line-height: 24px;
-margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
 }
 
 .sidebar__delivery {
@@ -767,26 +931,21 @@ margin: 0;
 }
 
 .sidebar__section {
-  background-color:  #F0ECF4;
-  padding: 8px 8px 12px 8px;
+  background-color: #f0ecf4;
+  padding: 8px 0 12px 0;
   border-radius: 8px;
   margin-bottom: 16px;
 }
 
-.sidebar__info-card {
+.hidden-payment {
   display: none;
 }
-
-.sidebar__payment {
-  display: none;
-}
-
 
 .label {
   position: relative;
-    padding-left: 33px;
-    color: #000000;
-    cursor: pointer;
+  padding-left: 38px;
+  color: #000000;
+  cursor: pointer;
 }
 
 .label::before {
@@ -797,8 +956,8 @@ margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   box-sizing: border-box;
-  left: 0;
-  top: 0;
+  left: 7px;
+  top: -3px;
 }
 
 .label::after {
@@ -814,20 +973,20 @@ margin: 0;
 
 .sidebar__input-agreement:checked + .label::after {
   display: block;
+  cursor: pointer;
 }
 
 .sidebar__input-agreement:checked + .label::before {
   border: none;
+  cursor: pointer;
 }
-
-
-
 
 .sidebar__payment-check {
   color: #000;
   font-size: 13px;
   line-height: 16px;
   margin-bottom: 24px;
+  padding-top: 11px;
 }
 
 .sidebar__information {
@@ -835,29 +994,32 @@ margin: 0;
 }
 
 .sidebar__agreement {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .paybutton {
   font-family: "SegoeUI-Bold", Arial, sans-serif;
-font-size: 16px;
-line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
   width: 100%;
   color: #fff;
   height: 44px;
   padding: 0px 32px 5px 32px;
   border: none;
   border-radius: 8px;
-  background-color: #CB11AB;
+  background-color: #cb11ab;
   cursor: pointer;
   margin-bottom: 12px;
 }
 
 .label__payment {
   position: relative;
-    padding-left: 23px;
-    color: #000000;
-    cursor: pointer;
+  display: block;
+  padding-left: 21px;
+  color: #000000;
+  cursor: pointer;
+  line-height: 16px;
+  letter-spacing: -0.5px;
 }
 
 .label__payment::before {
@@ -886,10 +1048,12 @@ line-height: 24px;
 
 .check__input-payment:checked + .label__payment::after {
   display: block;
+  cursor: pointer;
 }
 
 .check__input-payment:checked + .label__payment::before {
   border: none;
+  cursor: pointer;
 }
 
 .sidebar__agree {
@@ -902,10 +1066,360 @@ line-height: 24px;
 }
 
 .footer__text {
-  color: rgba(255, 255, 255, 0.70);
-font-size: 13px;
-line-height: 16px;
-margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.mobile__menu {
+  display: flex;
+  height: 56px;
+  padding: 2px 13px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  background-color: #fff;
+  box-shadow: 0px -0.5px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.mobile__menu button {
+  position: relative;
+  border: none;
+  padding: 0;
+  background-color: #fff;
+}
+
+.basket__count {
+  position: absolute;
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+  font-size: 10px;
+  line-height: 15px;
+  top: -4px;
+  left: 14px;
+  height: 16px;
+  width: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #f55123;
+  color: #fff;
+  text-align: center;
+}
+
+.card__price--total {
+  display: none;
+}
+
+.card__buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(5, 0, 10, 0.3);
+}
+
+.modal__wrapper {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px 13px 0px;
+}
+
+.modal__header h2 {
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+  line-height: 28px;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+.modal-open {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.delivery__modal {
+  justify-content: center;
+  align-items: center;
+}
+
+.delivery__form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.delivery__locations {
+  margin-bottom: 16px;
+}
+
+.close {
+  margin-top: 4px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.close:active {
+  opacity: 0.3;
+}
+
+.delivery__button-type {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.delivery__button-type button {
+  display: block;
+  min-width: 140px;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid rgba(203, 17, 171, 0.15);
+  background: #fff;
+  color: #000;
+  font-size: 13px;
+  font-family: "SegoeUI-Bold", Arial, sans-serif;
+  line-height: 16px;
+}
+
+.courier-services.button--active {
+  border: 2px solid #cb11ab;
+}
+
+.pickup-location.button--active {
+  border: 2px solid #cb11ab;
+}
+
+.address-list {
+  display: flex;
+  margin-bottom: 49px;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.address-list h3 {
+  margin: 0;
+}
+
+.form__radio label {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  padding-left: 29px;
+  margin-right: 0;
+  line-height: 18px;
+  width: 100%;
+}
+
+.delivery__location-delete {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin-left: 8px;
+  padding-top: 3px;
+}
+
+.delivery__location-delete svg {
+  fill: rgba(160, 160, 164, 1);
+}
+
+.delivery__location-delete:hover path {
+  fill: rgba(245, 81, 35, 1);
+}
+
+.location {
+  color: #a0a0a4;
+  margin: 0;
+  margin-left: 8px;
+}
+
+.delivery__adress-info {
+  display: flex;
+  align-items: center;
+}
+
+.raiting {
+  position: relative;
+  color: #000;
+  padding-left: 16px;
+  font-size: 13px;
+  line-height: 16px;
+  height: 16px;
+}
+
+.raiting::after {
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-image: url("../image/icon/star_fill.svg");
+  background-repeat: no-repeat;
+  left: 0px;
+  top: 1px;
+}
+
+.location__radio::before {
+  position: absolute;
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-sizing: border-box;
+  left: 0;
+  top: 6px;
+}
+
+.location__radio::after {
+  position: absolute;
+  display: none;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("../image/icon/radio.svg");
+  left: 0px;
+  top: 6px;
+}
+
+.location__input:checked + .location__radio::after {
+  display: block;
+  cursor: pointer;
+}
+
+.location__input:checked + .location__radio::before {
+  border: none;
+  cursor: pointer;
+}
+
+.form__submit {
+  display: flex;
+  width: 288px;
+  height: 44px;
+  color: #fff;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0px 48px 5px 48px;
+  border-radius: 8px;
+  background: #cb11ab;
+  margin-top: auto;
+  box-sizing: border-box;
+  transition: all 0.1s ease;
+  border: none;
+}
+
+.info__placeholder {
+  position: absolute;
+  top: 0;
+  color: #a0a0a4;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.payment__form {
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.form__radio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-type__info {
+  display: flex;
+}
+
+.form__bank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form__input-wrapper {
+  position: relative;
+  margin-bottom: 19px;
+}
+
+.input-color {
+  color: rgb(245, 81, 35);
+  border-bottom: 1px solid rgb(245, 81, 35);
+}
+
+.form__radio label::after {
+  position: absolute;
+  display: none;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("../image/icon/radio.svg");
+  left: 0px;
+  top: 0;
+}
+
+.form__radio label::before {
+  position: absolute;
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+
+.payment__input:checked + .payment__radio::after {
+  display: block;
+  cursor: pointer;
+}
+
+.payment__input:checked + .payment__radio::before {
+  border: none;
+  cursor: pointer;
+}
+
+.payment-type__number {
+  margin-left: 4px;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -929,6 +1443,29 @@ margin: 0;
     width: 594px;
   }
 
+  .header__basket {
+    position: relative;
+  }
+
+  .count-goods {
+    position: absolute;
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f55123;
+    width: 12px;
+    height: 16px;
+    border-radius: 16px;
+    color: #fff;
+    padding: 0px 2px;
+    font-family: "SegoeUI-Bold", "Arial", sans-serif;
+    font-size: 10px;
+    line-height: 18px;
+    top: -5px;
+    right: 5px;
+  }
+
   .header__field {
     display: block;
     width: 100%;
@@ -940,6 +1477,10 @@ margin: 0;
     border-radius: 36px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
+  }
+
+  .sold-out .title {
+    min-width: 309px;
   }
 
   .header__field:focus:hover {
@@ -970,6 +1511,7 @@ margin: 0;
     display: flex;
     padding: 0;
     margin: 0;
+    gap: 36px;
   }
 
   .header__nav-list li {
@@ -979,6 +1521,7 @@ margin: 0;
   .header__nav-item a {
     display: flex;
     flex-direction: column;
+    color: #fff;
   }
 
   .header__nav-item svg {
@@ -989,7 +1532,821 @@ margin: 0;
     padding-right: 16px;
   }
 
-  .header__nav-item:nth-child(n + 2) {
-    margin-left: 40px;
+  .main {
+    padding: 18px 24px 31px;
+  }
+
+  .basket-form__content {
+    padding: 0;
+  }
+
+  .basket-page__form {
+    display: flex;
+    gap: 32px;
+  }
+
+  .basket__left {
+    min-width: 640px;
+  }
+
+  .basket__right {
+    position: sticky;
+    align-self: flex-start;
+    top: 18px;
+    min-width: 303px;
+    max-width: 429px;
+    margin-top: 4px;
+    padding: 17px 24px 10px 24px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+      0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .sidebar {
+    padding: 0;
+  }
+
+  .basket__header {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.28px;
+    margin-top: 17px;
+    margin-bottom: 24px;
+  }
+
+  .basket__label::before {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 24px;
+    max-height: none;
+  }
+
+  .card__description {
+    width: 275px;
+  }
+
+  .card__info__company {
+    display: flex;
+    color: #9797af;
+    font-family: "SegoeUI", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .card__info__properties.card__info__company {
+    position: relative;
+  }
+
+  .popup__info {
+    position: relative;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+
+  .card__info__company p {
+    margin: 0;
+  }
+
+  .info__company--popup {
+    opacity: 1;
+    z-index: -1;
+    position: absolute;
+    top: 100%;
+    left: -125px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    color: #000000;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 11px 16px 13px;
+    width: 280px;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+      0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.3s ease;
+  }
+
+  .popup__info:hover .info__company--popup {
+    z-index: 100;
+  }
+
+  .card__size {
+    display: block;
+    font-family: "SegoeUI", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .card__color {
+    margin-bottom: 4px;
+    margin-right: 16px;
+  }
+
+  .card__type {
+    display: flex;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .payment {
+    padding: 16px 24px 24px 24px;
+    margin-bottom: 15px;
+  }
+
+  .payment__header {
+    margin-bottom: 17px;
+  }
+
+  .user-data__header {
+    margin-bottom: 17px;
+  }
+
+  .card__info__store {
+    margin: 0;
+    margin-bottom: 4px;
+  }
+
+  .user-data {
+    padding: 16px 24px 0 24px;
+  }
+
+  .card__price {
+    display: none;
+  }
+
+  .card__price--total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 120px;
+  }
+
+  .card {
+    display: flex;
+    gap: 17px;
+    justify-content: space-between;
+  }
+
+  .card:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .card__buttons {
+    flex-direction: column;
+    width: initial;
+    align-items: flex-start;
+  }
+
+  .card__count {
+    justify-content: space-between;
+    width: 226px;
+    align-items: flex-start;
+    padding: 12px 0;
+  }
+
+  .card__content {
+    border: none;
+    min-width: 397px;
+  }
+
+  .card__count-button {
+    width: 100px;
+    height: 44px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+  }
+
+  .count-button {
+    padding: 5px 5px 8px 7px;
+  }
+
+  .count__limited {
+    margin-bottom: 8px;
+  }
+
+  .card__count__bookmarks button {
+    margin: 0;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  .card__count__bookmarks {
+    margin-left: 38px;
+  }
+
+  .card__count__bookmarks path {
+    fill: #000;
+  }
+
+  .card__price--actuality span {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+  }
+
+  .card__price--actuality {
+    text-wrap: nowrap;
+  }
+
+  .card__choice-button {
+    margin-top: 38px;
+  }
+
+  .card__wrapper-image {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  .card__label::after {
+    position: static;
+    margin-right: 12px;
+  }
+
+  .card__label::before {
+    display: inline-block;
+    position: static;
+    margin-right: 12px;
+  }
+
+  .card__label {
+    position: relative;
+  }
+
+  .card__label::before {
+    position: static;
+  }
+
+  .card__label::after {
+    position: absolute;
+    top: -7px;
+    left: 0;
+  }
+
+  .card__price--not-current {
+    position: relative;
+  }
+
+  .accordion__item {
+    margin: 0;
+  }
+
+  .card__icon {
+    display: none;
+  }
+
+  .unavailable {
+    padding: 0;
+    margin-bottom: 36px;
+  }
+
+  .title {
+    -webkit-line-clamp: 4;
+  }
+
+  .accordion__list {
+    margin-bottom: 16px;
+  }
+
+  .delivery {
+    padding: 16px 24px 24px 24px;
+    margin-bottom: 16px;
+  }
+
+  .title-form {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+  }
+
+  .delivery__places {
+    display: flex;
+    gap: 32px;
+  }
+
+  .point-form {
+    width: 153px;
+  }
+
+  .delivery__price {
+    display: flex;
+    gap: 32px;
+  }
+
+  .unavailable__list li {
+    padding-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  .sold-out .card__content {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .delivery__date {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 12px;
+  }
+
+  .mobile__menu {
+    display: none;
+  }
+
+  .delivery__dates {
+    margin-bottom: 18px;
+  }
+
+  .delivery__info-shipping {
+    margin-left: 0;
+  }
+
+  .user-data__form {
+    display: flex;
+    flex-flow: wrap;
+    column-gap: 24px;
+    flex-direction: row;
+  }
+
+  .name__input-wrapper {
+    width: 283px;
+  }
+
+  .surname__input-wrapper {
+    width: 283px;
+  }
+
+  .phone__input-wrapper {
+    width: 180px;
+  }
+
+  .email__input-wrapper {
+    width: 180px;
+  }
+
+  .ITN__input-wrapper {
+    width: 180px;
+  }
+
+  .form__input-wrapper {
+    margin: 18px 0px 26px;
+  }
+
+  .user-data__input {
+    margin: 0;
+  }
+
+  .user-data__error-message {
+    top: 28px;
+  }
+
+  .sold-out {
+    padding: 0;
+  }
+
+  .info__placeholder {
+    top: -20px;
+  }
+
+  .popup {
+    width: 256px;
+    left: 228px;
+    top: 20px;
+  }
+
+  .popup--total {
+    top: 40px;
+    left: -16px;
+  }
+
+  .sidebar__total-header {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+  }
+
+  .total__price {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .delivery__locations {
+    display: flex;
+    margin-bottom: 16px;
+    gap: 32px;
+  }
+
+  .delivery__header {
+    margin-bottom: 17px;
+  }
+
+  .total__price span {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+  }
+
+  .sidebar__delivery {
+    display: block;
+    margin-bottom: 9px;
+  }
+
+  .sidebar__description-wrapper {
+    margin-bottom: 24px;
+  }
+
+  .sidebar__delivery-title {
+    font-family: "SegoeUI-Bold", Arial, sans-serif;
+    letter-spacing: -0.24px;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    letter-spacing: inherit;
+  }
+
+  .sidebar__delivery-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .sidebar__adress {
+    margin: 0;
+  }
+
+  .sidebar__date {
+    margin: 0;
+  }
+
+  .count-button__numeric {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .sidebar__section {
+    background-color: #f6f6fa;
+    margin-bottom: 24px;
+  }
+
+  .sidebar__change {
+    width: 20px;
+  }
+
+  .hidden-payment {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .sidebar__payment {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  .sidebar__section {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .label {
+    padding-left: 29px;
+  }
+
+  .sidebar__number-card {
+    font-size: 13px;
+  }
+
+  .change-button:focus-visible {
+    outline: none;
+  }
+
+  .sidebar__change img {
+    -webkit-user-select: none;
+  }
+
+  .sidebar__payment {
+    display: flex;
+  }
+
+  .payment__modal .modal__wrapper {
+    width: 400px;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .payment__modal {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal__header {
+    padding: 16px 0px 13px 0px;
+  }
+
+  .form__bank-list {
+    margin-bottom: 123px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form__submit {
+    width: 164px;
+    margin: 0;
+  }
+
+  .payment__form {
+    padding: 0 24px 16px;
+  }
+
+  .delivery__modal .modal__wrapper {
+    width: 500px;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .delivery__form {
+    padding: 0px 24px 24px;
+  }
+
+  .delivery__form .form__radio {
+    margin-bottom: 8px;
+  }
+
+  .address-list h3 {
+    font-family: "SegoeUI-Bold", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .sidebar-title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .sidebar__information {
+    padding: 0;
+  }
+
+  .label::before {
+    left: 0;
+  }
+}
+
+@media (min-width: 1400px) {
+  .header-wrapper {
+    padding: 16px 23px 17px 24px;
+  }
+
+  .header__search {
+    width: 100%;
+  }
+
+  .header__field {
+    padding: 0 20px;
+    height: 44px;
+  }
+
+  .header__nav-list {
+    font-size: 13px;
+    line-height: 16px;
+    gap: 43px;
+  }
+
+  .header__nav-item svg {
+    margin-bottom: 6px;
+  }
+
+  .header__nav-list li {
+    height: 56px;
+  }
+
+  .main {
+    padding: 34px 24px 34px 24px;
+  }
+
+  .basket__header {
+    margin-bottom: 28px;
+    margin-top: 0;
+  }
+
+  .basket__right {
+    min-width: 429px;
+    margin-top: -14px;
+  }
+
+  .card {
+    justify-content: space-between;
+  }
+
+  .card__buttons {
+    align-items: flex-start;
+  }
+
+  .count__limited {
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+
+  .card__count__bookmarks {
+    margin-left: 36px;
+  }
+
+  .card__count__bookmarks button {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    margin-left: 9px;
+    margin-top: 5px;
+  }
+
+  .card__price--actuality {
+    margin-bottom: 7px;
+  }
+
+  .basket__label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .card__content {
+    padding: 0;
+  }
+
+  .card__title-wrapper {
+    margin-top: 0;
+  }
+
+  .card__type {
+    margin-bottom: 4px;
+  }
+
+  .card__wrapper-image {
+    height: 117px;
+  }
+
+  .accordion__item {
+    margin-top: 9px;
+    padding-top: 8px;
+    margin-bottom: 0;
+  }
+
+  .card__count-button {
+    margin-bottom: 0;
+  }
+
+  .accordion__list {
+    margin-bottom: 30px;
+  }
+
+  .card__control {
+    align-items: flex-start;
+  }
+
+  .card__count {
+    padding: 0;
+  }
+
+  .sold-out {
+    margin: 0;
+    margin-right: 128px;
+  }
+
+  .sold-out .card__title-wrapper {
+    width: 309px;
+  }
+
+  .title-form {
+    font-size: 24px;
+  }
+
+  .delivery__header {
+    margin-bottom: 14px;
+  }
+
+  .delivery__date {
+    margin-bottom: 16px;
+  }
+
+  .payment__header {
+    margin-bottom: 18px;
+  }
+
+  .payment__title--total {
+    font-size: 16px;
+    font-family: "SegoeUI-Bold", Arial, sans-serif;
+    line-height: 24px;
+  }
+
+  .payment {
+    padding-bottom: 26px;
+  }
+
+  .name__input-wrapper {
+    width: 338px;
+  }
+
+  .surname__input-wrapper {
+    width: 338px;
+  }
+
+  .user-data__form {
+    margin-top: 16px;
+  }
+
+  .email__input-wrapper {
+    width: 217px;
+  }
+
+  .phone__input-wrapper {
+    width: 217px;
+  }
+
+  .ITN__input-wrapper {
+    width: 217px;
+  }
+
+  .user-data {
+    padding-bottom: 0;
+  }
+
+  .sidebar__payment {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+  }
+
+  .sidebar__adress {
+    margin-top: 0;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .sidebar__description-wrapper {
+    margin-bottom: 26px;
+  }
+
+  .sidebar__section {
+    margin-bottom: 23px;
+    padding-top: 14px;
+  }
+
+  .sidebar__info-card {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+
+  .sidebar__info-card .payment__number-card {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .label__payment {
+    display: block;
+    width: 360px;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: normal;
+  }
+
+  .unavailable__list li {
+    margin-bottom: 0;
+  }
+
+  .delivery {
+    padding-top: 0;
+  }
+
+  .popup {
+    width: 256px;
+    left: 228px;
+    top: 20px;
+  }
+
+  .popup--total {
+    top: 40px;
+    left: -16px;
+  }
+
+  .form__input-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .delivery__locations {
+    display: flex;
   }
 }

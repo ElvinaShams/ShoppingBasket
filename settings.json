@@ -1,7 +1,0 @@
-"files.associations": {"*html": "html"},
-"emmet.triggerExpansionOnTab": true,
-"emmet.includeLanguages": {
-     "html": "html",
-     "cshtml": "html",
-     "razor": "html"
-}
